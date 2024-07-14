@@ -47,13 +47,22 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Spinner
-        android:id="@+id/spinner_number_of_people"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_number_of_people"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         app:layout_constraintTop_toBottomOf="@+id/til_total"
-        tools:layout_editor_absoluteX="16dp"/>
+        tools:layout_editor_absoluteX="16dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tie_number_of_people"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Digite o número de pessoas na mesa"
+            android:inputType="number" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <RadioGroup
         android:id="@+id/rg_percentage"
@@ -63,9 +72,9 @@
         android:layout_marginTop="16dp"
         android:orientation="horizontal"
         android:gravity="center_horizontal"
-        app:layout_constraintEnd_toEndOf="@id/spinner_number_of_people"
-        app:layout_constraintStart_toStartOf="@id/spinner_number_of_people"
-        app:layout_constraintTop_toBottomOf="@id/spinner_number_of_people">
+        app:layout_constraintEnd_toEndOf="@+id/til_number_of_people"
+        app:layout_constraintStart_toStartOf="@+id/til_number_of_people"
+        app:layout_constraintTop_toBottomOf="@+id/til_number_of_people">
 
         <RadioButton
             android:id="@+id/rb_option_one"
