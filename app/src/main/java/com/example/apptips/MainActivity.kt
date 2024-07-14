@@ -1,9 +1,6 @@
 package com.example.apptips
 
 import android.os.Bundle
-import android.view.View
-import android.view.ViewParent
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -35,41 +32,23 @@ class MainActivity : AppCompatActivity() {
                 percentage = 20
             }
         }
-
         val adapter = ArrayAdapter.createFromResource(
             this ,
             R.array.num_of_people,
             android.R.layout.simple_spinner_item
         )
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item)
-        binding.spinnerNumberOfPeople.adapter = adapter
-
-        binding.spinnerNumberOfPeople.onItemSelectedListener =
-        object : AdapterView.OnItemSelectedListener {
-
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long) {
-                TODO("Not yet implemented")
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                TODO("Not yet implemented")
-            }
-        }
-
         binding.btnDone.setOnClickListener {
             val totalTableTemp = binding.tieTotal.text
-            if (totalTableTemp?.isEmpty() == true ){
+            val nPeopleTemp = binding.tieNumberOfPeople.text
+            if (totalTableTemp?.isEmpty() == true ||
+                nPeopleTemp?.isEmpty() == true ){
                 Snackbar
                     .make(binding.tieTotal,"Preencha todos os campos", Snackbar.LENGTH_LONG)
                     .show()
             } else{
                 val totalTable: Float = totalTableTemp.toString().toFloat()
-                val nPeople: Int = 5
+                val nPeople: Int = nPeopleTemp.toString().toInt()
 
                 val totalTemp = totalTable / nPeople
                 val tips = totalTemp * percentage / 100
@@ -80,6 +59,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnClean.setOnClickListener {
                 binding.tvResult.text = ""
                 binding.tieTotal.setText ("")
+                binding.tieNumberOfPeople.setText ("")
                 binding.rbOptionOne.isChecked = false
                 binding.rbOptionTwo.isChecked = false
                 binding.rbOptionThree.isChecked = false
